@@ -1,0 +1,439 @@
+﻿<Page x:Class="TheBoyKnowsClass.Hue.UI.Desktop.Pages.Scene"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:s="clr-namespace:System;assembly=mscorlib"
+      xmlns:e="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:b="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Behaviours;assembly=TheBoyKnowsClass.Common.UI.WPF"
+      xmlns:converters2="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.Desktop.Converters;assembly=TheBoyKnowsClass.Hue.UI.Common.Desktop"
+      xmlns:viewModels="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.ViewModels;assembly=TheBoyKnowsClass.Hue.UI.Common"
+      xmlns:hueDesktopControls="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Controls"
+      xmlns:controls="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.Controls;assembly=TheBoyKnowsClass.Common.UI.WPF.Modern"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1280"
+	Title="Scene">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"  />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=SelectedBridge.SelectedScene, Mode=OneWay}" d:DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=FirstBridge.FirstScene, Mode=OneWay}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Label Style="{StaticResource PageSubHeader}">Groups</Label>
+                <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <e:Interaction.Behaviors>
+                                    <b:DragBehavior DragEffects="Copy" />
+                                    <b:DropBehavior DropEffects="Copy" />
+                                </e:Interaction.Behaviors>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="25"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Width="24" Height="24" Margin="5 5 10 5">
+                                    <Path Stretch="Fill" Height="24" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                                    <Path Margin="0 0 4 2.5" Stretch="Uniform" Height="12" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource DisabledForeground}" />
+                                    <Path Margin="0 2 0 0" Stretch="Uniform" Height="13" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                                </Grid>
+                                <Label Grid.Column="1" Content="{Binding LightSource.ID}" />
+                                <Label Grid.Column="2" Content="{Binding LightSource.Name}" HorizontalContentAlignment="Stretch" />
+                                <CheckBox Margin="0 4 0 0" VerticalAlignment="Center" Grid.Column="3" IsChecked="{Binding IsInScene}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Label Style="{StaticResource PageSubHeader}">Lights</Label>
+                <ListBox ItemsSource="{Binding Lights}" SelectedItem="{Binding SelectedLight, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <e:Interaction.Behaviors>
+                                    <b:DragBehavior>
+                                        <b:DragBehavior.DragEffects>Copy</b:DragBehavior.DragEffects>
+                                        <b:DragBehavior.DragTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Path=LightSource.ID}" />
+                                            </DataTemplate>
+                                        </b:DragBehavior.DragTemplate>
+                                    </b:DragBehavior>
+                                </e:Interaction.Behaviors>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="25"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Width="24" Height="24" Margin="5 5 10 5">
+                                    <Path Stretch="Fill" Height="24" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                                    <Path Stretch="Uniform" Height="13" Width="13"  Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                                </Grid>
+                                <Label Grid.Column="1" Content="{Binding LightSource.ID}" />
+                                <Label Grid.Column="2" Content="{Binding LightSource.Name}"/>
+                                <CheckBox Margin="0 4 0 0" VerticalAlignment="Center" Grid.Column="3" IsChecked="{Binding IsInScene}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Name:"  />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" IsEnabled="{Binding IsEditable}" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Description:" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description, Mode=TwoWay}" IsEnabled="{Binding IsEditable}" />
+            <Label Grid.Row="2" Grid.Column="0" Content="Brightness:" />
+            <Slider Grid.Row="2" Grid.Column="1" Height="20" Minimum="0" Maximum="255" Value="{Binding Brightness, Mode=TwoWay}" IsEnabled="{Binding IsBrightnessEditable}" />
+            <Label Grid.Row="3" Grid.Column="0" Content="Categories:" />
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ListBox Grid.Column="0" IsEnabled="{Binding IsEditable}" ItemsSource="{Binding Categories}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Background="Transparent" IsEnabled="{Binding IsEditable}"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{DynamicResource Accent}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Foreground="{DynamicResource Foreground}" Content="{Binding}" VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
+                                <hueDesktopControls:CloseButtonControl Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0 0 5 0" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="2"/>
+                            <Setter Property="Margin" Value="2"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                <TextBox Grid.Column="1" HorizontalAlignment="Stretch"></TextBox>
+            </Grid>
+            <controls:ModernTabControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" SelectedIndex="{Binding DefaultSceneType, Mode=OneTime}">
+                <TabItem Header="RGB">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="0" Margin="20, 45, 20, 20" Background="White">
+                            <Canvas >
+                                <Canvas.Background>
+                                    <Binding Source="{StaticResource Hues}" >
+                                        <Binding.Converter>
+                                            <converters2:ColourMappingToLinearBrushConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Canvas.Background>
+                                <Canvas.OpacityMask>
+                                    <Binding Source="{StaticResource Saturations}" >
+                                        <Binding.Converter>
+                                            <converters2:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Canvas.OpacityMask>
+                            </Canvas>
+                        </Grid>
+                        <ListBox Grid.Column="0" Grid.Row="0" x:Name="HSBControl" ItemsSource="{Binding HSBStates}" SelectedItem="{Binding SelectedHSBState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                            <ListBox.Resources>
+                                <converters2:RatioToXYConverter x:Key="RatioToXConverter" Offset="-15" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Width" />
+                                <converters2:RatioToXYConverter x:Key="RatioToYConverter" Offset="-40" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Height"  />
+                            </ListBox.Resources>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas Margin="20, 45, 20, 20" Background="Transparent" DataContext="{Binding HSBStates}" >
+                                        <e:Interaction.Behaviors>
+                                            <b:DragElementCanvasBehavior Offset="-15,-40,15,0" />
+                                            <b:DragBehavior DragEffects="Link" />
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneLightViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneGroupViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                        </e:Interaction.Behaviors>
+                                    </Canvas>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0">
+                                        <e:Interaction.Behaviors>
+                                            <b:DropBehavior DropEffects="Link">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneStateViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneLightViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneGroupViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                        </e:Interaction.Behaviors>
+                                        <Path Data="M 0,15 A 15,15 0 1 1 17,30 L 15,40 L 13, 30 A 15,15 0 0 1 0,15 Z" Stroke="Black" StrokeThickness="2" >
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="{Binding Color, Mode=OneWay, Converter={StaticResource ColorConverter}}" />
+                                            </Path.Fill>
+                                        </Path>
+                                        <Label Content="{Binding ID}" Foreground="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource RatioToXConverter}, Mode=TwoWay}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource RatioToYConverter}, Mode=TwoWay}" />
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <StackPanel Grid.Row="0" Grid.Column="1">
+                            <Label Content="Hue" />
+                            <TextBox Text="{Binding SelectedHSBState.Hue, Mode=OneWay}"></TextBox>
+                            <Label Content="Saturation" />
+                            <TextBox Text="{Binding SelectedHSBState.Saturation, Mode=OneWay}"></TextBox>
+                            <Label Content="Brightness" />
+                            <TextBox Text="{Binding SelectedHSBState.Brightness, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Temperature">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Grid Margin="20, 45, 20, 20" Grid.Column="0" Grid.Row="0" Background="White">
+                            <Canvas>
+                                <Canvas.Background>
+                                    <Binding Source="{StaticResource Temperatures}" >
+                                        <Binding.Converter>
+                                            <converters2:ColourMappingToLinearBrushConverter />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Canvas.Background>
+                                <Canvas.OpacityMask>
+                                    <Binding Source="{StaticResource Saturations}" >
+                                        <Binding.Converter>
+                                            <converters2:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
+                                        </Binding.Converter>
+                                    </Binding>
+                                </Canvas.OpacityMask>
+                            </Canvas>
+                        </Grid>
+                        
+                        <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding ColourTemperatureStates}" x:Name="ColourTemperatureControl" SelectedItem="{Binding SelectedColourTemperatureState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                            <ListBox.Resources>
+                                <converters2:RatioToXYConverter x:Key="RatioToXConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-15" ParentDimension="Width" />
+                                <converters2:RatioToXYConverter x:Key="RatioToYConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-40" ParentDimension="Height" />
+                            </ListBox.Resources>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas Margin="20, 45, 20, 20" Background="Transparent" DataContext="{Binding ColourTemperatureStates}"  >
+                                        <e:Interaction.Behaviors>
+                                            <b:DragElementCanvasBehavior Offset="-15,-40,15,0" />
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneLightViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneGroupViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                        </e:Interaction.Behaviors>
+                                    </Canvas>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="viewModels:SceneStateViewModel">
+                                    <Grid>
+                                        <Path Data="M 0,15 A 15,15 0 1 1 17,30 L 15,40 L 13, 30 A 15,15 0 0 1 0,15 Z" Stroke="Black" StrokeThickness="2">
+                                            <Path.Fill>
+                                                <SolidColorBrush Color="{Binding Color, Mode=OneWay, Converter={StaticResource ColorConverter}}" />
+                                            </Path.Fill>
+                                        </Path>
+                                        <Label Content="{Binding ID}" Foreground="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style>
+                                    <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource RatioToXConverter}, Mode=TwoWay}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource RatioToYConverter}, Mode=TwoWay}" />
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                        <StackPanel Grid.Column="1" Grid.Row="0">
+                            <Label Content="Kelvin" />
+                            <TextBox Text="{Binding SelectedColourTemperatureState.Kelvin, Mode=OneWay}"></TextBox>
+                            <Label Content="Mirek" />
+                            <TextBox Text="{Binding SelectedColourTemperatureState.Mirek, Mode=OneWay}"></TextBox>
+                        </StackPanel>
+                        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Content="Remove">
+                            <Label.Visibility>
+                                <Binding Path="IsColourStateSelected" Converter="{StaticResource VisibilityConverter}">
+                                    <Binding.ConverterParameter>
+                                        <s:Boolean>true</s:Boolean>
+                                    </Binding.ConverterParameter>
+                                </Binding>
+                            </Label.Visibility>
+                        </Label>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Image">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Canvas Margin="15, 40, 15, 15" Grid.Column="0" Grid.Row="0">
+                            <e:Interaction.Behaviors>
+                                <b:DragElementCanvasBehavior />
+                            </e:Interaction.Behaviors>
+                            <Canvas.Background>
+                                <ImageBrush>
+
+                                </ImageBrush>
+                            </Canvas.Background>
+
+                            <!--<Grid Canvas.Left="200" Canvas.Top="200">
+                                <Path Data="M 0,15 A 15,15 0 1 1 17,30 L 15,40 L 13, 30 A 15,15 0 0 1 0,15 Z" Stroke="Black" StrokeThickness="2" Fill="White" />
+                                <Label Content="22" Foreground="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+                            </Grid>-->
+                        </Canvas>
+                        <!--<ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding ImageStates}" x:Name="ImageControl" SelectedItem="{Binding SelectedColourTemperatureState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                            <ListBox.Resources>
+                                <converters:RatioToXYConverter x:Key="RatioToXConverter" Data="{Binding ColourTemperatureStates}" ParentDimension="{Binding ElementName=ColourTemperatureControl, Path=ActualWidth, Mode=OneWay}" Offset="-16" />
+                                <converters:RatioToXYConverter x:Key="RatioToYConverter" Data="{Binding ColourTemperatureStates}" ParentDimension="{Binding ElementName=ColourTemperatureControl, Path=ActualHeight, Mode=OneWay}" Offset="-43" />
+                            </ListBox.Resources>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas Margin="15, 40, 15, 15" Background="Transparent" DataContext="{Binding ColourTemperatureStates}"  >
+                                        <e:Interaction.Behaviors>
+                                            <b:DragElementCanvasBehavior />
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneLightViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                            <b:DropBehavior DropEffects="Copy">
+                                                <b:DropBehavior.DropType>
+                                                    <x:Type TypeName="viewModels:SceneGroupViewModel" />
+                                                </b:DropBehavior.DropType>
+                                            </b:DropBehavior>
+                                        </e:Interaction.Behaviors>
+                                    </Canvas>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Path Data="M 17,0 L 20,-10 A 15,15 0 1 0 15,-10 Z" Stroke="Black" StrokeThickness="3" Fill="{Binding Color, Mode=OneWay, Converter={StaticResource ColorToBrushConverter}}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemContainerStyle>
+                                <Style>
+                                    <Setter Property="Canvas.Left" Value="{Binding X, Converter={StaticResource RatioToXConverter}, Mode=TwoWay}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource RatioToYConverter}, Mode=TwoWay}" />
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>-->
+                        <StackPanel Grid.Column="1" Grid.Row="0">
+                            <Label Content="Hue" />
+                            <TextBox Text="{Binding SelectedImageState.Hue, Mode=OneWay}"></TextBox>
+                            <Label Content="Saturation" />
+                            <TextBox Text="{Binding SelectedImageState.Saturation, Mode=OneWay}"></TextBox>
+                            <Label Content="Brightness" />
+                            <TextBox Text="{Binding SelectedImageState.Brightness, Mode=OneWay}"></TextBox>
+                            <StackPanel>
+                                <StackPanel.Visibility>
+                                    <Binding Path="IsInDebug" Converter="{StaticResource VisibilityConverter}">
+                                        <Binding.ConverterParameter>
+                                            <s:Boolean>true</s:Boolean>
+                                        </Binding.ConverterParameter>
+                                    </Binding>
+                                </StackPanel.Visibility>
+                                <Label Content="Width" />
+                                <TextBox></TextBox>
+                                <Label Content="Height" />
+                                <TextBox></TextBox>
+                                <Label Content="X" />
+                                <TextBox></TextBox>
+                                <Label Content="Y" />
+                                <TextBox></TextBox>
+                            </StackPanel>
+                        </StackPanel>
+                        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Content="Remove">
+                            <Label.Visibility>
+                                <Binding Path="IsColourStateSelected" Converter="{StaticResource VisibilityConverter}">
+                                    <Binding.ConverterParameter>
+                                        <s:Boolean>true</s:Boolean>
+                                    </Binding.ConverterParameter>
+                                </Binding>
+                            </Label.Visibility>
+                        </Label>
+                    </Grid>
+                </TabItem>
+            </controls:ModernTabControl>
+            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Command="{Binding SaveCommand}">Save</Button>
+                <Button Command="{Binding CancelCommand}">Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

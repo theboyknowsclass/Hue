@@ -1,0 +1,146 @@
+﻿<Page x:Class="TheBoyKnowsClass.Hue.UI.Desktop.Pages.Group"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:behaviours="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Behaviours;assembly=TheBoyKnowsClass.Common.UI.WPF"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:hueCommonViewModels="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.ViewModels;assembly=TheBoyKnowsClass.Hue.UI.Common"
+      mc:Ignorable="d" 
+	Title="Group">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"  />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=SelectedBridge.SelectedGroup, Mode=OneWay}" d:DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=FirstBridge.FirstGroup, Mode=OneWay}" IsEnabled="{Binding IsEditable}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="Transparent">
+            <StackPanel Margin="30 0">
+                <Label Style="{DynamicResource PageHeader}">Group</Label>
+                <Label Style="{DynamicResource PageSubHeader}">Details</Label>
+                <Grid Margin="5" >
+                    <i:Interaction.Behaviors>
+                        <behaviours:DropBehavior DropEffects="Copy">
+                            <behaviours:DropBehavior.DropType>
+                                <x:Type TypeName="hueCommonViewModels:LightViewModel" />
+                            </behaviours:DropBehavior.DropType>
+                        </behaviours:DropBehavior>
+                    </i:Interaction.Behaviors>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="48" Height="48" Margin="5 5 10 5">
+                        <Path Stretch="Fill" Height="48" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                        <Path Margin="0 0 8 5" Stretch="Uniform" Height="23" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource DisabledForeground}" />
+                        <Path Margin="0 5 0 0" Stretch="Uniform" Height="24" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                    </Grid>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <Label Style="{StaticResource TertiaryInfoSecondary}" Content="ID:" />
+                        <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding ID}" />
+                    </StackPanel>
+                    <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="24" Text="{Binding EditableName, Mode=TwoWay}" />
+                </Grid>
+                <Label Style="{DynamicResource PageSubHeader}">Lights</Label>
+                <ListBox ItemsSource="{Binding Path=Lights}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="hueCommonViewModels:GroupLightViewModel">
+                            <Grid Margin="5">
+                                <i:Interaction.Behaviors>
+                                    <behaviours:DragBehavior DragEffects="Copy" />
+                                </i:Interaction.Behaviors>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="48" Height="48" Margin="5 5 10 5">
+                                    <Path Stretch="Fill" Height="48" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                                    <Path Stretch="Uniform" Height="24" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                                </Grid>
+                                <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="8" Text="{Binding Light.Name, Mode=TwoWay}" />
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="ID:" />
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding Light.ID}" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"  Grid.Column="3" Orientation="Horizontal">
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Type:" />
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding Light.Type}" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"  Grid.Column="5" Orientation="Horizontal">
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Model ID:"/>
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding Light.ModelID}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"  Grid.Column="7" Orientation="Horizontal">
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Software Version:"/>
+                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding Light.SoftwareVersion}"/>
+                                </StackPanel>
+                                <Grid Grid.Column="9" Grid.Row="0" Grid.RowSpan="2" >
+                                    <CheckBox Margin="10" IsChecked="{Binding IsInGroup}" />
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="30">
+                    <Button x:Name="CancelButton">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource NavigationManager}, Path=GoBackCommand}" />
+                                <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CanSave}" Value="True">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        Cancel
+                    </Button>
+                    <Button x:Name="ApplyButton">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource NavigationManager}, Path=GoBackCommand}" />
+                                <i:InvokeCommandAction Command="{Binding SaveCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CanSave}" Value="True">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        Apply
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

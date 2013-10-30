@@ -1,0 +1,291 @@
+﻿<Page x:Class="TheBoyKnowsClass.Hue.UI.Desktop.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:controls="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.Controls;assembly=TheBoyKnowsClass.Common.UI.WPF.Modern"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:system="clr-namespace:System;assembly=System"
+      xmlns:hueCommonViewModels="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.ViewModels;assembly=TheBoyKnowsClass.Hue.UI.Common"
+      xmlns:system1="clr-namespace:System;assembly=mscorlib"
+      xmlns:converters="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Converters"
+      xmlns:behaviours="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Behaviours;assembly=TheBoyKnowsClass.Common.UI.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="MainPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Resources.xaml"  />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:IsConnectedConverter x:Key="IsConnectedConverter" />
+            <converters:IconConverter x:Key="IconConverter" />
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="30 0 0 0" DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=SelectedBridge, Mode=OneWay, IsAsync=True}" d:DataContext="{Binding Source={StaticResource HueAppViewModel}, Path=FirstBridge}">
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.Visibility>
+                <Binding Path="." Converter="{StaticResource IsConnectedConverter}">
+                    <Binding.ConverterParameter>
+                        <system1:Boolean>False</system1:Boolean>
+                    </Binding.ConverterParameter>
+                </Binding>
+            </Grid.Visibility>
+            <StackPanel>
+                <Label Style="{StaticResource PageHeader}">No Bridge Configured</Label>
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{StaticResource PageSubHeader}">Please goto the</Label>
+                    <Button Style="{StaticResource MenuBarButton}">
+                        <Button.Command>
+                            <Binding Path="NavigateCommand" Source="{StaticResource NavigationManager}" />
+                        </Button.Command>
+                        <Button.CommandParameter>
+                            <system:Uri>pack://application:,,,/Pages/Settings.xaml</system:Uri>
+                        </Button.CommandParameter>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Width="48" Height="48">
+                                <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource SettingsGeometry}"/>
+                            </Grid>
+                            <Label Style="{StaticResource PageSubHeader}" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Settings</Label>
+                        </StackPanel>
+                    </Button>
+                    <Label Style="{StaticResource PageSubHeader}">page to configure.</Label>
+                </StackPanel>
+            </StackPanel>            
+        </Grid>
+        <Grid>
+            <Grid.Visibility>
+                <Binding Converter="{StaticResource IsConnectedConverter}">
+                    <Binding.ConverterParameter>
+                        <system1:Boolean>True</system1:Boolean>
+                    </Binding.ConverterParameter>
+                </Binding>
+            </Grid.Visibility>
+            <controls:ModernTabControl SelectedIndex="1">
+                    <TabItem Header="Lights">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="Transparent">
+                            <StackPanel Margin="0 0 30 0">
+                            <Label Style="{StaticResource PageSubHeader}" Content="Groups"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource MenuBarButton}" Margin="5">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <i:InvokeCommandAction Command="{Binding Source={StaticResource NavigationManager}, Path=NavigateCommand}">
+                                                <i:InvokeCommandAction.CommandParameter>
+                                                    <system:Uri>pack://application:,,,/Pages/Group.xaml</system:Uri>
+                                                </i:InvokeCommandAction.CommandParameter>
+                                            </i:InvokeCommandAction>
+                                            <i:InvokeCommandAction Command="{Binding Path=AddGroupCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <StackPanel>
+                                        <Grid Width="48" Height="48">
+                                            <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                            <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource AddGeometry}"/>
+                                        </Grid>
+                                        <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Add</Label>
+                                    </StackPanel>
+                                </Button>
+                                <Button IsEnabled="{Binding CanEditGroup}" Style="{StaticResource MenuBarButton}" Margin="5">
+                                    <Button.Command>
+                                        <Binding Path="NavigateCommand" Source="{StaticResource NavigationManager}" />
+                                    </Button.Command>
+                                    <Button.CommandParameter>
+                                        <system:Uri>pack://application:,,,/Pages/Group.xaml</system:Uri>
+                                    </Button.CommandParameter>
+                                    <StackPanel>
+                                        <Grid Width="48" Height="48">
+                                            <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                            <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource EditGeometry}"/>
+                                        </Grid>
+                                        <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Edit</Label>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuBarButton}" Margin="5" Command="{Binding DeleteGroupCommand}">
+                                    <StackPanel>
+                                        <Grid Width="48" Height="48">
+                                            <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                            <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource DeleteGeometry}"/>
+                                        </Grid>
+                                        <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Delete</Label>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel> 
+                            <ListBox ItemsSource="{Binding Path=Groups}" SelectedItem="{Binding SelectedGroup, Mode=TwoWay}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="hueCommonViewModels:GroupViewModel">
+                                            <Grid Margin="5" >
+                                                <i:Interaction.Behaviors>
+                                                    <behaviours:DragBehavior DragEffects="Copy" />
+                                                    <behaviours:DropBehavior DropEffects="Copy">
+                                                        <behaviours:DropBehavior.DropType>
+                                                            <x:Type TypeName="hueCommonViewModels:LightViewModel" />
+                                                        </behaviours:DropBehavior.DropType>
+                                                    </behaviours:DropBehavior>
+                                                </i:Interaction.Behaviors>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="48" Height="48" Margin="5 5 10 5">
+                                                    <Path Stretch="Fill" Height="48" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                                                    <Path Margin="0 0 8 5" Stretch="Uniform" Height="23" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource DisabledForeground}" />
+                                                    <Path Margin="0 5 0 0" Stretch="Uniform" Height="24" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                                                </Grid>
+                                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="ID:" />
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding ID}" />
+                                                </StackPanel>
+                                                <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="24" Text="{Binding Name, Mode=TwoWay}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <Label Style="{StaticResource PageSubHeader}" Content="Lights"/>
+                                <ListBox ItemsSource="{Binding Path=Lights}" SelectedItem="{Binding SelectedLight, Mode=TwoWay}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="hueCommonViewModels:LightViewModel">
+                                            <Grid Margin="5">
+                                            <i:Interaction.Behaviors>
+                                                <behaviours:DragBehavior DragEffects="Copy" />
+                                            </i:Interaction.Behaviors>
+                                            <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Width="48" Height="48" Margin="5 5 10 5">
+                                                    <Path Stretch="Fill" Height="48" Data="{StaticResource BaseCircleGeometry}" Fill="{DynamicResource Foreground}" />
+                                                    <Path Stretch="Uniform" Height="24" Data="{StaticResource HueLightGeometry}" Fill="{DynamicResource Foreground}" />
+                                                </Grid>
+                                                <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="7" Text="{Binding Name, Mode=TwoWay}" />
+                                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="ID:" />
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding ID}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="1"  Grid.Column="3" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Type:" />
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding Type}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="1"  Grid.Column="5" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Model ID:"/>
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding ModelID}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="1"  Grid.Column="7" Orientation="Horizontal">
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="Software Version:"/>
+                                                    <Label Style="{StaticResource TertiaryInfoSecondary}" Content="{Binding SoftwareVersion}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Scenes">
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Background="Transparent">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource MenuBarButton}" Margin="5">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding Source={StaticResource NavigationManager}, Path=NavigateCommand}">
+                                                    <i:InvokeCommandAction.CommandParameter>
+                                                        <system:Uri>pack://application:,,,/Pages/Scene.xaml</system:Uri>
+                                                    </i:InvokeCommandAction.CommandParameter>
+                                                </i:InvokeCommandAction>
+                                                <!--<i:InvokeCommandAction Command="{Binding Path=LoadCommand, ElementName=myOtherDomainDataSource}"/>-->
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <StackPanel>
+                                            <Grid Width="48" Height="48">
+                                                <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                                <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource AddGeometry}"/>
+                                            </Grid>
+                                            <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Add</Label>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button IsEnabled="{Binding CanEditScene}" Style="{StaticResource MenuBarButton}" Margin="5">
+                                            <Button.Command>
+                                                <Binding Path="NavigateCommand" Source="{StaticResource NavigationManager}" />
+                                            </Button.Command>
+                                            <Button.CommandParameter>
+                                                <system:Uri>pack://application:,,,/Pages/Scene.xaml</system:Uri>
+                                            </Button.CommandParameter>
+                                            <StackPanel>
+                                                <Grid Width="48" Height="48">
+                                                    <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                                    <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource EditGeometry}"/>
+                                                </Grid>
+                                            <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Edit</Label>
+                                            </StackPanel>
+                                    </Button>
+                                    <Button IsEnabled="{Binding CanDeleteScene}" Style="{StaticResource MenuBarButton}" Margin="5">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <!--<i:InvokeCommandAction Command="{Binding Source={StaticResource NavigationManager}, Path=NavigateCommand}">
+                                                <i:InvokeCommandAction.CommandParameter>
+                                                    <system:Uri>pack://application:,,,/Pages/Scene.xaml</system:Uri>
+                                                </i:InvokeCommandAction.CommandParameter>
+                                            </i:InvokeCommandAction>-->
+                                                <!--<i:InvokeCommandAction Command="{Binding Path=LoadCommand, ElementName=myOtherDomainDataSource}"/>-->
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <StackPanel>
+                                            <Grid Width="48" Height="48">
+                                                <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                                <Path Width="24" Height="24" Stretch="Uniform" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource DeleteGeometry}"/>
+                                            </Grid>
+                                            <Label Style="{DynamicResource ItemHeader}" HorizontalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Delete</Label>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <ListBox ItemsSource="{Binding SceneCategories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Style="{StaticResource PageSubHeader}" Content="{Binding}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox ItemsSource="{Binding Scenes}" SelectedItem="{Binding SelectedScene, Mode=TwoWay}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="hueCommonViewModels:SceneViewModel">
+                                        <Grid Margin="4" Width="120" Height="120" Background="{DynamicResource Accent}">
+                                            <Canvas Width="76" Height="76"></Canvas>
+                                            <Label Style="{StaticResource ItemHeader}" Content="{Binding Name}" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" />
+                                        </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </TabItem>
+                </controls:ModernTabControl>
+            </Grid>
+        </Grid>
+</Page>

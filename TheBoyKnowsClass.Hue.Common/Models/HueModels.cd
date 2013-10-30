@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Bridge">
+    <Position X="13" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAGCgAogABABAAAQoQgAAAAAACEBBAWAAAAEBU=</HashCode>
+      <FileName>Models\Bridge.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Config" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Lights" />
+      <Property Name="Groups" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BridgeConfig" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAIAAgIAUCAABAAAYAAEAEAAACQAA=</HashCode>
+      <FileName>Models\BridgeConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BridgeFinder" Collapsed="true">
+    <Position X="31.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BridgeFinder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BridgeSoftwareUpdate" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAABAAAAADAAAAAA=</HashCode>
+      <FileName>Models\BridgeSoftwareUpdate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Client" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Command" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAhAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Error" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Error.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Group">
+    <Position X="17.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAEAAAAAAAAgAAADAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Group.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Lights" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.HueConnection" Collapsed="true">
+    <Position X="33" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAEAEgAIgASIBBFBAAAABACAkAAAgAAIAigAgMQAk=</HashCode>
+      <FileName>Models\HueConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.HueResponseEventArgs" Collapsed="true">
+    <Position X="33" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\HueResponseEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.LastAddedLights" Collapsed="true">
+    <Position X="28.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAA=</HashCode>
+      <FileName>Models\LastAddedLights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Light" Collapsed="true">
+    <Position X="19.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAgAAAAADCAAAAAAQAIAAAABIE=</HashCode>
+      <FileName>Models\Light.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.PointSymbol" Collapsed="true">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAACAAAEAAAAAAACAQAAIAAAAAAAEAgAAAA=</HashCode>
+      <FileName>Models\PointSymbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Schedule" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAggAAAAAAABAQAABAAAAEAAAAAAAAAAQA=</HashCode>
+      <FileName>Models\Schedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.State" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CABQAABAAAgAEAAAAEAAAAAAAIAABAAAAAAAAAAAAII=</HashCode>
+      <FileName>Models\State.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Success" Collapsed="true">
+    <Position X="24.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIEAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Success.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.Factories.HueObjectFactory" Collapsed="true">
+    <Position X="31.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAABAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Factories\HueObjectFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BaseClasses.HueConnectedObjectBase" Collapsed="true">
+    <Position X="16.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseClasses\HueConnectedObjectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BaseClasses.HueObjectBase" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BaseClasses\HueObjectBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BaseClasses.HueObjectCollectionBase&lt;T&gt;" Collapsed="true">
+    <Position X="28.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIAAAAAFAUAAAABAQgAAAABAAUAAAAAABQIAA=</HashCode>
+      <FileName>Models\BaseClasses\HueObjectCollectionBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheBoyKnowsClass.Hue.Common.Models.BaseClasses.LightSourceBaseClass" Collapsed="true">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAgAAAAAAAAAQAADAAAAEAAAAARAAAAIA=</HashCode>
+      <FileName>Models\BaseClasses\LightSourceBaseClass.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="TheBoyKnowsClass.Hue.Common.Interfaces.ILightSource" Collapsed="true">
+    <Position X="31.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAARAAAAAA=</HashCode>
+      <FileName>Interfaces\ILightSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TheBoyKnowsClass.Hue.Common.Enumerations.HueObjectType" Collapsed="true">
+    <Position X="31.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAQQAAAAEBgAAAkAAAAgAABAAAAAACAQ=</HashCode>
+      <FileName>Enumerations\HueObjectType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TheBoyKnowsClass.Hue.Common.Enumerations.LightSourceType" Collapsed="true">
+    <Position X="33" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations\LightSourceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="TheBoyKnowsClass.Hue.Common.Models.HueActionDelegate" Collapsed="true">
+    <Position X="31.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Models\HueConnection.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
