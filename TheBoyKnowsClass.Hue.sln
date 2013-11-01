@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBoyKnowsClass.Hue.UI.Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBoyKnowsClass.Common.UI", "..\Common\TheBoyKnowsClass.Common.UI\TheBoyKnowsClass.Common.UI.csproj", "{07065C47-3C25-4CEF-B247-60847D0DC45B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBoyKnowsClass.Hue.UI.Common.Desktop", "TheBoyKnowsClass.Hue.UI.Common.Desktop\TheBoyKnowsClass.Hue.UI.Common.Desktop.csproj", "{B8B878BC-EC5D-45F7-8500-2B77175FDB63}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBoyKnowsClass.Common.UI.WPF", "..\Common\TheBoyKnowsClass.Common.UI.WPF\TheBoyKnowsClass.Common.UI.WPF.csproj", "{815BB997-2731-4794-BA25-E7E1B1E7A88A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBoyKnowsClass.Common.UI.WPF.Modern", "..\Common\TheBoyKnowsClass.Common.UI.WPF.Modern\TheBoyKnowsClass.Common.UI.WPF.Modern.csproj", "{FAB4358A-93DD-417A-85F3-87E20CAF00B9}"
@@ -97,16 +95,6 @@ Global
 		{07065C47-3C25-4CEF-B247-60847D0DC45B}.Release|ARM.ActiveCfg = Release|Any CPU
 		{07065C47-3C25-4CEF-B247-60847D0DC45B}.Release|x64.ActiveCfg = Release|Any CPU
 		{07065C47-3C25-4CEF-B247-60847D0DC45B}.Release|x86.ActiveCfg = Release|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Release|ARM.ActiveCfg = Release|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Release|x64.ActiveCfg = Release|Any CPU
-		{B8B878BC-EC5D-45F7-8500-2B77175FDB63}.Release|x86.ActiveCfg = Release|Any CPU
 		{815BB997-2731-4794-BA25-E7E1B1E7A88A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{815BB997-2731-4794-BA25-E7E1B1E7A88A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{815BB997-2731-4794-BA25-E7E1B1E7A88A}.Debug|ARM.ActiveCfg = Debug|Any CPU

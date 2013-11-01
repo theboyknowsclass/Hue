@@ -5,7 +5,7 @@
                     xmlns:helpers="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.Helpers;assembly=TheBoyKnowsClass.Hue.UI.Common"
                     xmlns:hueDesktopModels="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Models"
                     xmlns:viewModels="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.ViewModels;assembly=TheBoyKnowsClass.Common.UI.WPF.Modern"
-                    xmlns:hueDesktopConverters="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.Desktop.Converters;assembly=TheBoyKnowsClass.Hue.UI.Common.Desktop">
+                    xmlns:hueDesktopConverters="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Converters">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernControls.xaml" />
     </ResourceDictionary.MergedDictionaries>

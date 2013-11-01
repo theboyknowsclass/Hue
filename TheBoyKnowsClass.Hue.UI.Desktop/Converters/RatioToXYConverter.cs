@@ -7,7 +7,7 @@ using TheBoyKnowsClass.Common.UI.WPF.Helpers;
 using TheBoyKnowsClass.Hue.UI.Common.Enumerations;
 using TheBoyKnowsClass.Hue.UI.Common.Interfaces;
 
-namespace TheBoyKnowsClass.Hue.UI.Common.Desktop.Converters
+namespace TheBoyKnowsClass.Hue.UI.Desktop.Converters
 {
     public class RatioToXYConverter : Freezable, IValueConverter
     {

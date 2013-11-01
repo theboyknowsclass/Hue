@@ -95,8 +95,12 @@
     <Compile Include="Controls\CloseButtonControl.xaml.cs">
       <DependentUpon>CloseButtonControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ColourMappingToLinearBrushConverter.cs" />
+    <Compile Include="Converters\ColourToColorConverter.cs" />
     <Compile Include="Converters\IconConverter.cs" />
     <Compile Include="Converters\IsConnectedConverter.cs" />
+    <Compile Include="Converters\RatioToXYConverter.cs" />
+    <Compile Include="Helpers\ColourHelper.cs" />
     <Compile Include="Models\LocalSettings.cs" />
     <Compile Include="Pages\Group.xaml.cs">
       <DependentUpon>Group.xaml</DependentUpon>
@@ -196,10 +200,6 @@
     <ProjectReference Include="..\..\Common\TheBoyKnowsClass.Common\TheBoyKnowsClass.Common.csproj">
       <Project>{db5ca9d7-ef84-41e2-8c5f-57555f7d9f3d}</Project>
       <Name>TheBoyKnowsClass.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheBoyKnowsClass.Hue.UI.Common.Desktop\TheBoyKnowsClass.Hue.UI.Common.Desktop.csproj">
-      <Project>{b8b878bc-ec5d-45f7-8500-2b77175fdb63}</Project>
-      <Name>TheBoyKnowsClass.Hue.UI.Common.Desktop</Name>
     </ProjectReference>
     <ProjectReference Include="..\TheBoyKnowsClass.Hue.UI.Common\TheBoyKnowsClass.Hue.UI.Common.csproj">
       <Project>{694ffb8c-30fa-4b37-a761-ea7bf48e1692}</Project>

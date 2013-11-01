@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-using TheBoyKnowsClass.Hue.UI.Common.Desktop.Helpers;
 using TheBoyKnowsClass.Hue.UI.Common.Models;
+using TheBoyKnowsClass.Hue.UI.Desktop.Helpers;
 
-namespace TheBoyKnowsClass.Hue.UI.Common.Desktop.Converters
+namespace TheBoyKnowsClass.Hue.UI.Desktop.Converters
 {
     public class ColourToColorConverter : Freezable, IValueConverter
     {

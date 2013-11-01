@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:s="clr-namespace:System;assembly=mscorlib"
       xmlns:e="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:b="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Behaviours;assembly=TheBoyKnowsClass.Common.UI.WPF"
-      xmlns:converters2="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.Desktop.Converters;assembly=TheBoyKnowsClass.Hue.UI.Common.Desktop"
       xmlns:viewModels="clr-namespace:TheBoyKnowsClass.Hue.UI.Common.ViewModels;assembly=TheBoyKnowsClass.Hue.UI.Common"
       xmlns:hueDesktopControls="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Controls"
       xmlns:controls="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.Controls;assembly=TheBoyKnowsClass.Common.UI.WPF.Modern"
+      xmlns:converters="clr-namespace:TheBoyKnowsClass.Hue.UI.Desktop.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="1024" d:DesignWidth="1280"
 	Title="Scene">
@@ -155,14 +155,14 @@
                                 <Canvas.Background>
                                     <Binding Source="{StaticResource Hues}" >
                                         <Binding.Converter>
-                                            <converters2:ColourMappingToLinearBrushConverter />
+                                            <converters:ColourMappingToLinearBrushConverter />
                                         </Binding.Converter>
                                     </Binding>
                                 </Canvas.Background>
                                 <Canvas.OpacityMask>
                                     <Binding Source="{StaticResource Saturations}" >
                                         <Binding.Converter>
-                                            <converters2:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
+                                            <converters:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
                                         </Binding.Converter>
                                     </Binding>
                                 </Canvas.OpacityMask>
@@ -170,8 +170,8 @@
                         </Grid>
                         <ListBox Grid.Column="0" Grid.Row="0" x:Name="HSBControl" ItemsSource="{Binding HSBStates}" SelectedItem="{Binding SelectedHSBState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
                             <ListBox.Resources>
-                                <converters2:RatioToXYConverter x:Key="RatioToXConverter" Offset="-15" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Width" />
-                                <converters2:RatioToXYConverter x:Key="RatioToYConverter" Offset="-40" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Height"  />
+                                <converters:RatioToXYConverter x:Key="RatioToXConverter" Offset="-15" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Width" />
+                                <converters:RatioToXYConverter x:Key="RatioToYConverter" Offset="-40" Data="{Binding HSBStates}" Parent="{Binding ElementName=HSBControl, Mode=OneWay}" ParentDimension="Height"  />
                             </ListBox.Resources>
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -256,14 +256,14 @@
                                 <Canvas.Background>
                                     <Binding Source="{StaticResource Temperatures}" >
                                         <Binding.Converter>
-                                            <converters2:ColourMappingToLinearBrushConverter />
+                                            <converters:ColourMappingToLinearBrushConverter />
                                         </Binding.Converter>
                                     </Binding>
                                 </Canvas.Background>
                                 <Canvas.OpacityMask>
                                     <Binding Source="{StaticResource Saturations}" >
                                         <Binding.Converter>
-                                            <converters2:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
+                                            <converters:ColourMappingToLinearBrushConverter StartPoint="0,1" EndPoint="0,0" Data="{Binding Source={StaticResource Saturations}}" />
                                         </Binding.Converter>
                                     </Binding>
                                 </Canvas.OpacityMask>
@@ -272,8 +272,8 @@
                         
                         <ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding ColourTemperatureStates}" x:Name="ColourTemperatureControl" SelectedItem="{Binding SelectedColourTemperatureState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
                             <ListBox.Resources>
-                                <converters2:RatioToXYConverter x:Key="RatioToXConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-15" ParentDimension="Width" />
-                                <converters2:RatioToXYConverter x:Key="RatioToYConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-40" ParentDimension="Height" />
+                                <converters:RatioToXYConverter x:Key="RatioToXConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-15" ParentDimension="Width" />
+                                <converters:RatioToXYConverter x:Key="RatioToYConverter" Data="{Binding ColourTemperatureStates}" Parent="{Binding ElementName=ColourTemperatureControl, Mode=OneWay}" Offset="-40" ParentDimension="Height" />
                             </ListBox.Resources>
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>

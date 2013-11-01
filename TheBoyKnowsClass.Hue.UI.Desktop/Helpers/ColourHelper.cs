@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
 using TheBoyKnowsClass.Hue.UI.Common.Models;
 
-namespace TheBoyKnowsClass.Hue.UI.Common.Desktop.Helpers
+namespace TheBoyKnowsClass.Hue.UI.Desktop.Helpers
 {
     public static class ColourHelper
     {
