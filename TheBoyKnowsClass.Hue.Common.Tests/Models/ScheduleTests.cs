@@ -19,9 +19,9 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
             var command = new Command { Address = "/api/0/groups/1/action", Method = "PUT" };
             command.Body.Add("on", true);
-            command.Body.Add("Hue", 25500);
-            command.Body.Add("Brightness", 255);
-            command.Body.Add("Saturation", 255);
+            command.Body.Add("Hue", 25400);
+            command.Body.Add("Brightness", 254);
+            command.Body.Add("Saturation", 254);
 
             var schedule = new Schedule(command, DateTime.Now.AddMinutes(1)) { Description = GetRandomString(), Name = "test schedule" };
 
@@ -57,9 +57,9 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
             var command = new Command { Address = "/api/0/groups/1/action", Method = "PUT" };
             command.Body.Add("on", true);
-            command.Body.Add("Hue", 25500);
-            command.Body.Add("Brightness", 255);
-            command.Body.Add("Saturation", 255);
+            command.Body.Add("Hue", 25400);
+            command.Body.Add("Brightness", 254);
+            command.Body.Add("Saturation", 254);
 
             var schedule = new Schedule(command, DateTime.Now.AddMinutes(1)) { Description = "test schedule " + GetRandomString(), Name = "test schedule" };
 

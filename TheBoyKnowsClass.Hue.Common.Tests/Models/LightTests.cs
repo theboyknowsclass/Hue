@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TheBoyKnowsClass.Hue.Common.Models;
 using TheBoyKnowsClass.Hue.Common.Models.BaseClasses;
+using System.Diagnostics;
+using System;
 
 namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 {
@@ -34,7 +36,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
             if (light != null)
             {
-                Assert.IsNull(light.State);
+                //Assert.IsNull(light.State);
                 light = await light.GetAttributesAsync() as Light;
                 Assert.IsNotNull(light);
                 Assert.IsNotNull(light.State);
@@ -85,12 +87,25 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
             var oldStates = new Dictionary<string, State>();
 
+            Debug.WriteLine(string.Join(Environment.NewLine, lights.Select(l => l.Type)));
+
             foreach (Light rv in lights.Dictionary.Values)
             {
                 var light = await rv.GetAttributesAsync() as Light;
                 Assert.IsNotNull(light);
                 oldStates.Add(rv.ID, light.State);
-                var newState = new State { Hue = 0, Brightness = 255, Saturation = 255, On = true };
+
+                State newState;
+
+                if(light.SupportedColorModes.Contains(Enumerations.ColorMode.HueSaturation))
+                {
+                    newState = new State { Hue = 0, Brightness = 254, Saturation = 254, On = true };
+                }
+                else
+                {
+                    newState = new State { Brightness = 254, On = true };
+                }
+                
                 Assert.IsInstanceOfType(await rv.SetStateAsync(newState),
                                         typeof(HueObjectCollectionBase<Success>));
                 System.Threading.Thread.Sleep(150);
@@ -99,8 +114,15 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
                 Assert.AreEqual(light.State.Hue, newState.Hue);
                 Assert.AreEqual(light.State.Brightness, newState.Brightness);
                 Assert.AreEqual(light.State.Saturation, newState.Saturation);
-                Assert.AreEqual(light.State.ColorMode, "hs");
 
+                if (light.SupportedColorModes.Contains(Enumerations.ColorMode.HueSaturation))
+                {
+                    Assert.AreEqual(light.State.ColorMode, "hs");
+                }
+                else
+                {
+                    Assert.AreEqual(light.State.ColorMode, null);
+                }
                 System.Threading.Thread.Sleep(100);
             }
 

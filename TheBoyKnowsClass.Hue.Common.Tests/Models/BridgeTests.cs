@@ -34,7 +34,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
         [TestMethod]
         public async Task LoginSuccessTest()
         {
-            const string validID = "newdeveloper";
+            const string validID = "newdeveloper1";
 
             var rv = await GetConnectedBridge();
             Assert.IsInstanceOfType(await rv.LoginAsync(validID), typeof(HueObjectCollectionBase<Success>));
@@ -241,7 +241,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
         public static async Task<Bridge> GetLoggedInBridge()
         {
-            const string validID = "newdeveloper";
+            const string validID = "newdeveloper1";
             Bridge rv = await GetConnectedBridge();
             await rv.LoginAsync(validID);
             return rv;

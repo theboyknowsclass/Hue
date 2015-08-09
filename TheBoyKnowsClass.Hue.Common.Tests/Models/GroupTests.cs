@@ -22,7 +22,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
 
             if (group != null)
             {
-                Assert.IsNull(group.State);
+                //Assert.IsNull(group.State);
                 group = await group.GetAttributesAsync() as Group;
                 Assert.IsNotNull(group);
                 Assert.IsNotNull(group.State);
@@ -43,7 +43,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
                 var group = await rv.GetAttributesAsync() as Group;
                 Assert.IsNotNull(group);
                 oldStates.Add(rv.ID, group.State);
-                var newState = new State { Hue = 46920, Brightness = 255, Saturation = 255, On = true };
+                var newState = new State { Hue = 46920, Brightness = 254, Saturation = 254, On = true };
                 Assert.IsInstanceOfType(await rv.SetStateAsync(newState), typeof(HueObjectCollectionBase<Success>));
                 System.Threading.Thread.Sleep(3000);
                 group = await rv.GetAttributesAsync() as Group;
@@ -51,7 +51,7 @@ namespace TheBoyKnowsClass.Hue.Common.Tests.Models
                 Assert.AreEqual(group.State.Hue, newState.Hue);
                 Assert.AreEqual(group.State.Brightness, newState.Brightness);
                 Assert.AreEqual(group.State.Saturation, newState.Saturation);
-                //Assert.AreEqual(group.State.ColorMode, "hs");
+                Assert.AreEqual(group.State.ColorMode, "hs");
             }
 
             foreach (KeyValuePair<string, State> rv in oldStates)

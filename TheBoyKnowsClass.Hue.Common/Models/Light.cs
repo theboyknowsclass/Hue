@@ -3,6 +3,9 @@ using Newtonsoft.Json.Linq;
 using TheBoyKnowsClass.Hue.Common.Enumerations;
 using TheBoyKnowsClass.Hue.Common.Models.BaseClasses;
 using TheBoyKnowsClass.Hue.Common.Models.Factories;
+using System.Collections.Generic;
+using TheBoyKnowsClass.Common.Enumerations;
+using TheBoyKnowsClass.Hue.Common.Models.Attributes;
 
 namespace TheBoyKnowsClass.Hue.Common.Models
 {
@@ -10,10 +13,12 @@ namespace TheBoyKnowsClass.Hue.Common.Models
     {
         public Light()
         {
+            SupportedColorModes = new List<ColorMode>();
         }
 
         public Light(string id) : base(id)
         {
+            SupportedColorModes = new List<ColorMode>();
         }
 
         public Light(HueConnection context, string id) : base(context, id)
@@ -33,12 +38,31 @@ namespace TheBoyKnowsClass.Hue.Common.Models
             }
 
             Type = (string)jObject["type"];
+
+            LightType = EnumHelper.GetEnumWithDescription<LightType>(Type);
+            SupportsColorModeAttribute supportsColorModeAttribute = LightType.GetEnumAttribute<SupportsColorModeAttribute>();
+
+            if (supportsColorModeAttribute != null)
+            {
+                SupportedColorModes = supportsColorModeAttribute.Modes;
+            }
+            else
+            {
+                SupportedColorModes = new List<ColorMode>();
+            }
+
             Name = (string)jObject["name"];
             ModelID = (string)jObject["modelid"];
             SoftwareVersion = (string)jObject["swversion"];
         }
 
         public string Type { get; private set; }
+
+        public LightType? LightType { get; private set; }
+
+        public bool CanDim { get; private set; }
+
+        public IEnumerable<ColorMode> SupportedColorModes { get; private set;}
 
         protected override string URI
         {
