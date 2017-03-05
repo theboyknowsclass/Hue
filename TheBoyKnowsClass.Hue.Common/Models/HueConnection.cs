@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using TheBoyKnowsClass.Common.Models.Queue;
 using TheBoyKnowsClass.Hue.Common.Models.BaseClasses;
 using TheBoyKnowsClass.Hue.Common.Operations;
-using TheBoyKnowsClass.Hue.Common.Properties;
 using TheBoyKnowsClass.Schedules.Common.Models;
 
 namespace TheBoyKnowsClass.Hue.Common.Models
@@ -63,7 +62,7 @@ namespace TheBoyKnowsClass.Hue.Common.Models
 
         ~HueConnection()  // destructor
         {
-            _exitThreadEvent.Set();
+            _exitThreadEvent?.Set();
         }
 
         #region Public Properties

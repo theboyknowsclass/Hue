@@ -330,7 +330,7 @@
                         </Label>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Image">
+                <!--<TabItem Header="Image">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
@@ -350,12 +350,12 @@
                                 </ImageBrush>
                             </Canvas.Background>
 
-                            <!--<Grid Canvas.Left="200" Canvas.Top="200">
+                            --><!--<Grid Canvas.Left="200" Canvas.Top="200">
                                 <Path Data="M 0,15 A 15,15 0 1 1 17,30 L 15,40 L 13, 30 A 15,15 0 0 1 0,15 Z" Stroke="Black" StrokeThickness="2" Fill="White" />
                                 <Label Content="22" Foreground="Black" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
-                            </Grid>-->
+                            </Grid>--><!--
                         </Canvas>
-                        <!--<ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding ImageStates}" x:Name="ImageControl" SelectedItem="{Binding SelectedColourTemperatureState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                        --><!--<ListBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding ImageStates}" x:Name="ImageControl" SelectedItem="{Binding SelectedColourTemperatureState}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
                             <ListBox.Resources>
                                 <converters:RatioToXYConverter x:Key="RatioToXConverter" Data="{Binding ColourTemperatureStates}" ParentDimension="{Binding ElementName=ColourTemperatureControl, Path=ActualWidth, Mode=OneWay}" Offset="-16" />
                                 <converters:RatioToXYConverter x:Key="RatioToYConverter" Data="{Binding ColourTemperatureStates}" ParentDimension="{Binding ElementName=ColourTemperatureControl, Path=ActualHeight, Mode=OneWay}" Offset="-43" />
@@ -392,7 +392,7 @@
                                     <Setter Property="Canvas.Top" Value="{Binding Y, Converter={StaticResource RatioToYConverter}, Mode=TwoWay}" />
                                 </Style>
                             </ListBox.ItemContainerStyle>
-                        </ListBox>-->
+                        </ListBox>--><!--
                         <StackPanel Grid.Column="1" Grid.Row="0">
                             <Label Content="Hue" />
                             <TextBox Text="{Binding SelectedImageState.Hue, Mode=OneWay}"></TextBox>
@@ -428,7 +428,7 @@
                             </Label.Visibility>
                         </Label>
                     </Grid>
-                </TabItem>
+                </TabItem>-->
             </controls:ModernTabControl>
             <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Command="{Binding SaveCommand}">Save</Button>

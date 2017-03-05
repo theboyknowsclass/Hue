@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 using TheBoyKnowsClass.Hue.Common.Enumerations;
 using TheBoyKnowsClass.Hue.Common.Models.BaseClasses;
 using TheBoyKnowsClass.Hue.Common.Operations;
-using TheBoyKnowsClass.Hue.Common.Properties;
 
 namespace TheBoyKnowsClass.Hue.Common.Models.Factories
 {

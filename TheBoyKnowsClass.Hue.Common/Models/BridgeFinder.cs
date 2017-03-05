@@ -16,7 +16,7 @@ namespace TheBoyKnowsClass.Hue.Common.Models
 
         private async Task<HueObjectBase> GetBridgesFromPortalAPIAsync(HueConnection connection)
         {
-            string returnString = await connection.GetAsync(Properties.Resources.BridgeUPNPURI);
+            string returnString = await connection.GetAsync(Resources.BridgeUPNPURI);
             return HueObjectFactory.CreateHueObject(returnString, connection, HueObjectType.Bridge) as HueObjectCollectionBase<Bridge> ?? (HueObjectBase)new Error(-1, "", "No Hue Bridge Found");
         }
     }

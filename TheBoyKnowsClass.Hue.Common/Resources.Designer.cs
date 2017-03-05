@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TheBoyKnowsClass.Hue.Common.Properties {
+namespace TheBoyKnowsClass.Hue.Common {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace TheBoyKnowsClass.Hue.Common.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheBoyKnowsClass.Hue.Common.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TheBoyKnowsClass.Hue.Common.Resources", typeof(Resources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

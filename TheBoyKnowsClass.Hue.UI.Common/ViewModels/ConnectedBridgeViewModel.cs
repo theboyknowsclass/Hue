@@ -11,9 +11,6 @@ namespace TheBoyKnowsClass.Hue.UI.Common.ViewModels
             ConnectAsync();
         }
 
-        new public bool IsConnected
-        {
-            get { return true; }
-        }
+        public new bool IsConnected => true;
     }
 }

@@ -4,6 +4,7 @@ using TheBoyKnowsClass.Hue.Common.Enumerations;
 using TheBoyKnowsClass.Hue.Common.Models.BaseClasses;
 using TheBoyKnowsClass.Hue.Common.Models.Factories;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using TheBoyKnowsClass.Common.Enumerations;
 using TheBoyKnowsClass.Hue.Common.Models.Attributes;
 
@@ -60,14 +61,17 @@ namespace TheBoyKnowsClass.Hue.Common.Models
 
         public LightType? LightType { get; private set; }
 
+        [JsonIgnore]
         public bool CanDim { get; private set; }
 
+        [JsonIgnore]
         public IEnumerable<ColorMode> SupportedColorModes { get; private set;}
 
         protected override string URI
         {
             get { return Context.LightURI(ID); }
         }
+
         protected override string StateURI
         {
             get { return Context.LightStateURI(ID); }
